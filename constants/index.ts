@@ -4,6 +4,7 @@ import { IoBagHandleSharp } from "react-icons/io5";
 import { GiHanger } from "react-icons/gi";
 import { BsTypeUnderline } from "react-icons/bs";
 import { FaCirclePlus } from "react-icons/fa6";
+import { CiDesktop } from "react-icons/ci";
 
 export const navigations = [
      {
@@ -30,6 +31,11 @@ export const navigations = [
           title: "Product List",
           link: 'product-list',
           icon: GiHanger
+     },
+     {
+          title: "Desktops",
+          link: 'desktops',
+          icon: CiDesktop
      },
      {
           title: "Product type",

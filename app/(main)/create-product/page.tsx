@@ -1,129 +1,172 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from "react";
 
 const CreateProductPage = () => {
-     const [title, setTitle] = useState('')
-     const [description, setDescription] = useState('')
-     const [totalProducts, setTotalProducts] = useState('')
-     const [price, setPrice] = useState('')
-     const [productImage, setProductImage] = useState(null)
+  const [name_ru, setNameRu] = useState("");
+  const [name_uz, setNameUz] = useState("");
+  const [description_ru, setDescriptionRu] = useState("");
+  const [description_uz, setDescriptionUz] = useState("");
+  const [price_usd, setPriceUsd] = useState("");
+  const [price_uzs, setPriceUzs] = useState("");
+  const [image, setImage] = useState<null | File>(null);
+  const [slug, setSlug] = useState("");
 
-     const handleImageChange = (e) => {
-          const file = e.target.files[0]
-          if (file) {
-               setProductImage(URL.createObjectURL(file))
-          }
-     }
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+    }
+  };
 
-     const handleSubmit = (e) => {
-          e.preventDefault()
-          console.log({
-               title,
-               description,
-               totalProducts,
-               price,
-               productImage,
-          })
-     }
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log({
+      name_ru,
+      name_uz,
+      description_ru,
+      description_uz,
+      price_usd,
+      price_uzs,
+      image,
+      slug,
+    });
+  };
 
-     return (
-          <div className="h-screen bg-slate-900 text-white p-6">
-               <h1 className="text-3xl font-bold mb-6">Create New Product</h1>
+  return (
+    <div className="h-screen overflow-scroll bg-slate-900 text-white p-6">
+      <h1 className="text-3xl font-bold mb-6">Create New Product</h1>
 
-               <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Title */}
-                    <div>
-                         <label className="block text-lg font-semibold" htmlFor="title">
-                              Product Title
-                         </label>
-                         <input
-                              type="text"
-                              id="title"
-                              value={title}
-                              onChange={(e) => setTitle(e.target.value)}
-                              className="w-full p-3 bg-slate-800 text-white rounded-lg"
-                              placeholder="Enter product title"
-                              required
-                         />
-                    </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label className="block text-lg font-semibold" htmlFor="name_ru">
+            Product Name (RU)
+          </label>
+          <input
+            type="text"
+            id="name_ru"
+            value={name_ru}
+            onChange={(e) => setNameRu(e.target.value)}
+            className="w-full p-3 bg-slate-800 text-white rounded-lg"
+            placeholder="Enter product name in Russian"
+            required
+          />
+        </div>
 
-                    {/* Description */}
-                    <div>
-                         <label className="block text-lg font-semibold" htmlFor="description">
-                              Product Description
-                         </label>
-                         <textarea
-                              id="description"
-                              value={description}
-                              onChange={(e) => setDescription(e.target.value)}
-                              className="w-full p-3 bg-slate-800 text-white rounded-lg"
-                              placeholder="Enter product description"
-                              required
-                         />
-                    </div>
+        <div>
+          <label className="block text-lg font-semibold" htmlFor="name_uz">
+            Product Name (UZ)
+          </label>
+          <input
+            type="text"
+            id="name_uz"
+            value={name_uz}
+            onChange={(e) => setNameUz(e.target.value)}
+            className="w-full p-3 bg-slate-800 text-white rounded-lg"
+            placeholder="Enter product name in Uzbek"
+            required
+          />
+        </div>
+        <div>
+          <label
+            className="block text-lg font-semibold"
+            htmlFor="description_ru"
+          >
+            Product Description (RU)
+          </label>
+          <textarea
+            id="description_ru"
+            value={description_ru}
+            onChange={(e) => setDescriptionRu(e.target.value)}
+            className="w-full p-3 bg-slate-800 text-white rounded-lg"
+            placeholder="Enter product description in Russian"
+            required
+          />
+        </div>
 
-                    {/* Total Products */}
-                    <div>
-                         <label className="block text-lg font-semibold" htmlFor="totalProducts">
-                              Total Products
-                         </label>
-                         <input
-                              type="number"
-                              id="totalProducts"
-                              value={totalProducts}
-                              onChange={(e) => setTotalProducts(e.target.value)}
-                              className="w-full p-3 bg-slate-800 text-white rounded-lg"
-                              placeholder="Enter total products available"
-                              required
-                         />
-                    </div>
+        <div>
+          <label
+            className="block text-lg font-semibold"
+            htmlFor="description_uz"
+          >
+            Product Description (UZ)
+          </label>
+          <textarea
+            id="description_uz"
+            value={description_uz}
+            onChange={(e) => setDescriptionUz(e.target.value)}
+            className="w-full p-3 bg-slate-800 text-white rounded-lg"
+            placeholder="Enter product description in Uzbek"
+            required
+          />
+        </div>
 
-                    {/* Price */}
-                    <div>
-                         <label className="block text-lg font-semibold" htmlFor="price">
-                              Product Price ($)
-                         </label>
-                         <input
-                              type="number"
-                              id="price"
-                              value={price}
-                              onChange={(e) => setPrice(e.target.value)}
-                              className="w-full p-3 bg-slate-800 text-white rounded-lg"
-                              placeholder="Enter product price"
-                              required
-                         />
-                    </div>
+        <div>
+          <label className="block text-lg font-semibold" htmlFor="price_usd">
+            Product Price (USD)
+          </label>
+          <input
+            type="number"
+            id="price_usd"
+            value={price_usd}
+            onChange={(e) => setPriceUsd(e.target.value)}
+            className="w-full p-3 bg-slate-800 text-white rounded-lg"
+            placeholder="Enter product price in USD"
+            required
+          />
+        </div>
 
-                    {/* Image Upload */}
-                    <div>
-                         <label className="block text-lg font-semibold" htmlFor="productImage">
-                              Product Image
-                         </label>
-                         <input
-                              type="file"
-                              id="productImage"
-                              onChange={handleImageChange}
-                              className="w-full p-3 bg-slate-800 text-white rounded-lg"
-                              accept="image/*"
-                         />
-                         {productImage && (
-                              <div className="mt-4">
-                                   <img src={productImage} alt="Product" className="w-32 h-32 object-cover rounded-lg" />
-                              </div>
-                         )}
-                    </div>
+        <div>
+          <label className="block text-lg font-semibold" htmlFor="price_uzs">
+            Product Price (UZS)
+          </label>
+          <input
+            type="number"
+            id="price_uzs"
+            value={price_uzs}
+            onChange={(e) => setPriceUzs(e.target.value)}
+            className="w-full p-3 bg-slate-800 text-white rounded-lg"
+            placeholder="Enter product price in UZS"
+            required
+          />
+        </div>
 
-                    {/* Submit Button */}
-                    <button
-                         type="submit"
-                         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
-                    >
-                         Create Product
-                    </button>
-               </form>
-          </div>
-     )
-}
+        <div>
+          <label className="block text-lg font-semibold" htmlFor="slug">
+            Product Slug
+          </label>
+          <input
+            type="text"
+            id="slug"
+            value={slug}
+            onChange={(e) => setSlug(e.target.value)}
+            className="w-full p-3 bg-slate-800 text-white rounded-lg"
+            placeholder="Enter product slug"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-lg font-semibold" htmlFor="image">
+            Product Image
+          </label>
+          <input
+            type="file"
+            id="image"
+            onChange={handleImageChange}
+            className="w-full p-3 bg-slate-800 text-white rounded-lg"
+            accept="image/*"
+          />
+        </div>
 
-export default CreateProductPage
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+        >
+          Create Product
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default CreateProductPage;
